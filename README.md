@@ -31,4 +31,4 @@ Analizar reseñas de restaurantes para identificar los principales factores que 
 El principal problema detectado es la inconsistencia en la ejecución del servicio, no la falta de esfuerzo.
 
 ## 📎 Notebook
-[Ver análisis completo](restaurant-reviews-analysis/RestaurantReviews (3).ipynb)
+[restaurant-reviews-analysis/RestaurantReviews (3).ipynb]
