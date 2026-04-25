@@ -1,35 +1,25 @@
 # 📊 Portfolio Data Analytics
 
-Repositorio en construcción con proyectos de Data Analytics enfocados en **Customer Experience (CX)** y **Gestión de Calidad**.
+## Sobre mí
+Business Process Analyst y especialista en Data Analytics con experiencia en optimización de operaciones, integración de plataformas y análisis de KPIs en sectores de gastronomía, servicios digitales y minería.
 
-El objetivo es aplicar herramientas de análisis de datos para identificar oportunidades de mejora en procesos, reducir la variabilidad y optimizar la experiencia del cliente.
+## Intereses
+- Aplicar Data Science y Analytics para resolver desafíos en industrias de alto impacto.  
+- Transformar datos en decisiones estratégicas y mejoras operativas.  
+- Explorar el potencial de la analítica en minería para optimizar procesos y gestión de recursos.  
 
----
+## Tecnologías
+- Python, SQL, Power BI, Excel avanzado  
+- Modelado de procesos (BPMN-lite, ISO 9001)  
+- Integración de plataformas 
+
+## Objetivo
+Construir soluciones reproducibles y auditables que generen valor tangible en la operación y la experiencia del cliente.
 
 ## 🚧 Estado del repositorio
 
 Actualmente en desarrollo.  
 Se irán incorporando proyectos con análisis exploratorios, visualizaciones y aplicaciones prácticas orientadas a negocio.
-
----
-
-## 🧰 Herramientas
-
-- Python (Pandas, Numpy)
-- Visualización de datos (Matplotlib, Seaborn)
-- Excel / Power BI
-- SQL (en formación)
-
----
-
-## 🎯 Enfoque
-
-Background en **Gestión de Calidad (ISO 9001)** y experiencia en medición de satisfacción (NPS).
-
-Interés en:
-- Mejora continua (PDCA)
-- Customer Experience (CX)
-- Análisis de datos aplicado a operaciones
 
 ---
 
