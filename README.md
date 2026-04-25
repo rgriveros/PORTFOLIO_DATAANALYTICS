@@ -36,5 +36,6 @@ Interés en:
 ## 📫 Contacto
 
 - LinkedIn: [https://www.linkedin.com/in/rgriveros/]
+- mail: rgriveroslobos@outlook.com
 
 ---
