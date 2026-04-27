@@ -1,1 +1,58 @@
+# 🛒 Olist E-Commerce Analysis | SQL + Python
+
+## 📌 Overview
+
+Este proyecto analiza el comportamiento de órdenes, clientes y operaciones en un entorno real de e-commerce utilizando el dataset de Olist (Brasil).
+
+A diferencia de análisis basados en archivos planos, este caso replica un entorno productivo con múltiples tablas relacionadas, utilizando SQL para extracción de datos y Python para análisis y visualización.
+
+---
+
+## 🎯 Objetivos
+
+- Analizar el flujo de órdenes y su estado operativo  
+- Evaluar tiempos de entrega y eficiencia logística  
+- Medir la satisfacción del cliente (NPS operativo)  
+- Detectar gaps entre volumen y experiencia del cliente  
+- Proponer acciones concretas orientadas a negocio  
+
+---
+
+## 🧠 Principales insights
+
+- ~97% de las órdenes se entregan correctamente  
+- NPS operativo: **66 puntos** (adaptación sobre escala 1–5)  
+- Río de Janeiro presenta el mayor gap entre volumen y satisfacción  
+- Se identifican patrones de estacionalidad en revenue  
+- La experiencia del cliente no es homogénea: existen regiones críticas  
+
+---
+
+## 🚀 Recomendaciones
+
+- Priorizar mejoras logísticas en Río de Janeiro  
+- Optimizar tiempos de entrega y calidad del servicio  
+- Monitorear regiones con alto volumen y bajo score  
+- Profundizar análisis de causas raíz (logística, transportistas, incidencias)  
+
+---
+
+## 📊 Contenido del análisis
+
+- Queries SQL con múltiples JOINs  
+- Uso de Window Functions (`OVER()`)  
+- Métricas operativas (delivery, revenue, estados de órdenes)  
+- Cálculo de NPS adaptado  
+- Visualizaciones en Python  
+- Mapa coroplético con GeoPandas  
+
+---
+
+## 🛠️ Tecnologías
+
+- SQL (SQLite)  
+- Python  
+- Pandas  
+- Matplotlib / Seaborn  
+- GeoPandas  
 
