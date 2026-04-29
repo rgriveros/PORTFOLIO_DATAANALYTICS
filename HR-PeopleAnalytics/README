@@ -1,1 +1,104 @@
+# 🔍 HR Nómina Analytics — Detección de Anomalías Salariales
+
+## 📋 Descripción del Proyecto
+
+Simulación de una **auditoría de nómina** para una empresa de 1.470 empleados usando técnicas de People Analytics. El Gerente de Finanzas detectó posibles irregularidades salariales y solicitó un análisis exploratorio para identificar outliers, inequidades internas y patrones anómalos por departamento y rol.
+
+Este proyecto refleja un caso de uso real en empresas de servicios, finanzas y retail, donde el análisis de nómina impacta directamente en costos, equidad interna y riesgo legal.
+
+---
+
+## 🎯 Objetivos
+
+- Detectar empleados con salarios estadísticamente anómalos usando **Z-Score**
+- Identificar inequidad salarial interna por rol (mismo puesto, distinto salario)
+- Rankear salarios dentro de cada departamento usando **SQL Window Functions**
+- Traducir hallazgos técnicos en recomendaciones ejecutivas accionables
+
+---
+
+## 📦 Dataset
+
+**IBM HR Analytics Employee Attrition & Performance**
+- Fuente: [Kaggle — pavansubhasht](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset)
+- Registros: 1.470 empleados
+- Variables clave: `MonthlyIncome`, `Department`, `JobRole`, `YearsAtCompany`, `PerformanceRating`, `Attrition`
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+| Herramienta | Uso |
+|---|---|
+| **Python 3.10+** | Análisis, visualización y cálculo estadístico |
+| **SQLite (via Python)** | Base de datos relacional en memoria |
+| **SQL** | Queries de agregación y Window Functions |
+| **Pandas** | Manipulación y transformación de datos |
+| **Seaborn / Matplotlib** | Visualizaciones estadísticas |
+| **NumPy** | Cálculo de Z-Score |
+| **Google Colab** | Entorno de desarrollo |
+
+---
+
+## 🔍 Metodología
+
+### 1. Setup — Carga de datos a SQLite
+Los datos del CSV se cargan en una base de datos SQLite en memoria, simulando el flujo real de trabajo con bases de datos relacionales.
+
+### 2. Análisis de dispersión salarial por departamento
+```sql
+SELECT Department,
+       COUNT(*) AS total_empleados,
+       ROUND(AVG(MonthlyIncome), 2) AS salario_promedio,
+       ROUND(MAX(MonthlyIncome) - MIN(MonthlyIncome), 2) AS rango_salarial
+FROM employees
+GROUP BY Department
+ORDER BY salario_promedio DESC
+```
+
+### 3. Detección de outliers con Z-Score
+El Z-Score mide cuántas desviaciones estándar se aleja el salario de un empleado del promedio de su propio departamento. Umbral utilizado: **|Z| > 2.5** (top 0.6% de desviaciones).
+
+```python
+df_salarios['zscore_salario'] = df_salarios.groupby('Department')['MonthlyIncome'].transform(
+    lambda x: (x - x.mean()) / x.std()
+)
+outliers = df_salarios[df_salarios['zscore_salario'].abs() > 2.5]
+```
+
+### 4. Análisis de inequidad por rol
+Cálculo de variación porcentual entre salario mínimo y máximo para el mismo puesto — detecta roles con alta dispersión interna.
+
+### 5. Window Functions SQL — Ranking por departamento
+```sql
+SELECT EmployeeNumber, Department, JobRole, MonthlyIncome,
+       RANK() OVER (PARTITION BY Department ORDER BY MonthlyIncome DESC) AS ranking_dept,
+       ROUND(AVG(MonthlyIncome) OVER (PARTITION BY Department), 2) AS salario_promedio_dept,
+       ROUND(MonthlyIncome - AVG(MonthlyIncome) OVER (PARTITION BY Department), 2) AS gap_vs_promedio
+FROM employees
+ORDER BY Department, ranking_dept
+```
+
+---
+
+## 📊 Hallazgos Principales
+
+| Hallazgo | Detalle |
+|---|---|
+| **Outliers salariales detectados** | 62 empleados con Z-Score > 2.5 |
+| **Rol con mayor inequidad interna** | Research Scientist — 268% de variación entre mínimo y máximo |
+| **Departamento con mayor dispersión** | Research & Development |
+| **Gap máximo positivo** | Empleados senior con hasta +$10.000 sobre el promedio departamental |
+
+---
+
+## 💡 Recomendaciones Ejecutivas
+
+1. **Investigación de los 62 outliers** — validar si la desviación tiene justificación documentada (antigüedad, especialización, desempeño). Si no la tiene, es una irregularidad a corregir.
+
+2. **Revisar bandas salariales para Research Scientist** — la variación del 268% indica ausencia de estructura salarial clara para ese rol. Definir rangos formales reduce riesgo legal y mejora retención.
+
+3. **Monitoreo trimestral con este mismo pipeline** — el análisis es reproducible. Ejecutarlo cada trimestre permite detectar desviaciones antes de que escalen.
+
+---
 
