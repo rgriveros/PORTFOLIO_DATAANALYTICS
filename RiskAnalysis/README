@@ -5,7 +5,7 @@ El enfoque está orientado a reproducibilidad, trazabilidad y aplicación en ind
 
 ---
 
-## 🎯 Objetivos
+## Objetivos
 - Analizar patrones de endeudamiento y morosidad.
 - Construir modelos de clasificación para predecir riesgo crediticio.
 - Evaluar métricas de desempeño (AUC, F1, Recall) en escenarios de desbalance de clases.
@@ -13,7 +13,7 @@ El enfoque está orientado a reproducibilidad, trazabilidad y aplicación en ind
 
 ---
 
-## ⚙️ Tecnologías utilizadas
+## Tecnologías utilizadas
 - **Python** (pandas, numpy, scikit-learn, matplotlib, seaborn)
 - **Google Colab / Jupyter Notebooks**
 - **GitHub** para versionado y portafolio
@@ -21,7 +21,7 @@ El enfoque está orientado a reproducibilidad, trazabilidad y aplicación en ind
 
 ---
 
-## 🚀 Cómo replicar
+## Cómo replicar?
 1. Clonar el repositorio:
    ```bash
    git clone https://github.com/RGRIVEROS-PORTFOLIO/PORTFOLIO_ANALYTICS.git
