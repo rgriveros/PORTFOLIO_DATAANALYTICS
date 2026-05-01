@@ -1,1 +1,27 @@
+# Risk Analysis – Credit Scoring
 
+Este proyecto aplica **Data Analytics y Machine Learning** al dataset *Give Me Some Credit* (Kaggle, 2011), con el objetivo de explorar variables socioeconómicas y construir modelos predictivos de riesgo crediticio.  
+El enfoque está orientado a reproducibilidad, trazabilidad y aplicación en industrias reguladas.
+
+---
+
+## 🎯 Objetivos
+- Analizar patrones de endeudamiento y morosidad.
+- Construir modelos de clasificación para predecir riesgo crediticio.
+- Evaluar métricas de desempeño (AUC, F1, Recall) en escenarios de desbalance de clases.
+- Documentar el flujo de trabajo en notebooks reproducibles.
+
+---
+
+## ⚙️ Tecnologías utilizadas
+- **Python** (pandas, numpy, scikit-learn, matplotlib, seaborn)
+- **Google Colab / Jupyter Notebooks**
+- **GitHub** para versionado y portafolio
+- **Power BI / Excel** (opcional) para visualización ejecutiva
+
+---
+
+## 🚀 Cómo replicar
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/RGRIVEROS-PORTFOLIO/PORTFOLIO_ANALYTICS.git
