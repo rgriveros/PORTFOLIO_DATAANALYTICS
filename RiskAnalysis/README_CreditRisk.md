@@ -1,4 +1,4 @@
-# 💳 Credit Risk Analytics — Detección de Morosidad y Alertas Tempranas
+# Credit Risk Analytics — Detección de Morosidad y Alertas Tempranas
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-SQLite-lightblue?logo=sqlite&logoColor=white)
@@ -9,7 +9,7 @@
 
 ---
 
-## 📋 Descripción del Proyecto
+## Descripción del Proyecto
 
 Simulación de una **auditoría de cartera crediticia** para una financiera de consumo con 150.000 clientes. El Gerente de Riesgo solicitó un análisis exploratorio para identificar patrones de morosidad, segmentar clientes por nivel de riesgo y proponer criterios de alerta temprana basados en datos reales.
 
@@ -17,7 +17,7 @@ El análisis combina técnicas estadísticas (segmentación por DebtRatio, anál
 
 ---
 
-## 🎯 Objetivos
+## Objetivos
 
 - Calcular y contextualizar la **tasa de morosidad global** de la cartera
 - Segmentar clientes por nivel de riesgo usando el **ratio deuda/ingreso**
@@ -27,7 +27,7 @@ El análisis combina técnicas estadísticas (segmentación por DebtRatio, anál
 
 ---
 
-## 📦 Dataset
+## Dataset
 
 **Give Me Some Credit — Kaggle**
 - Fuente: [Kaggle — brycecf](https://www.kaggle.com/datasets/brycecf/give-me-some-credit-dataset)
@@ -45,7 +45,7 @@ El análisis combina técnicas estadísticas (segmentación por DebtRatio, anál
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## Tecnologías utilizadas
 
 | Herramienta | Uso |
 |---|---|
@@ -59,7 +59,7 @@ El análisis combina técnicas estadísticas (segmentación por DebtRatio, anál
 
 ---
 
-## 🔍 Metodología
+## Metodología
 
 ### 1. Limpieza e Imputación con criterio de negocio
 
@@ -106,7 +106,7 @@ Cruce de `age_group` × `segmento_riesgo` para identificar combinaciones de mayo
 
 ---
 
-## 📊 Hallazgos Principales
+## Hallazgos Principales
 
 | Hallazgo | Detalle |
 |---|---|
@@ -118,7 +118,7 @@ Cruce de `age_group` × `segmento_riesgo` para identificar combinaciones de mayo
 
 ---
 
-## 💡 Criterio de Aceptación/Rechazo — Marco ISO 31000
+## Criterio de Aceptación/Rechazo — Marco ISO 31000
 
 | Zona | Criterio | Acción recomendada |
 |---|---|---|
@@ -130,7 +130,7 @@ Cruce de `age_group` × `segmento_riesgo` para identificar combinaciones de mayo
 
 ---
 
-## 📁 Estructura del Repositorio
+## Estructura del Repositorio
 
 ```
 RiskAnalysis/
@@ -142,7 +142,7 @@ RiskAnalysis/
 
 ---
 
-## ▶️ Cómo reproducir el análisis
+## Cómo reproducir el análisis
 
 1. Clonar el repositorio:
 ```bash
@@ -160,7 +160,7 @@ El dataset se descarga automáticamente via API de Kaggle en la primera celda.
 
 ---
 
-## 👤 Autor
+## Autor
 
 **Rodolfo Gabriel Riveros Lobos**
 Data Analyst Junior | Background en Calidad ISO 9001, ISO 31000 & Customer Experience
@@ -170,7 +170,7 @@ Data Analyst Junior | Background en Calidad ISO 9001, ISO 31000 & Customer Exper
 
 ---
 
-## 📂 Otros proyectos del portfolio
+## Otros proyectos del portfolio
 
 | Proyecto | Descripción | Stack |
 |---|---|---|
