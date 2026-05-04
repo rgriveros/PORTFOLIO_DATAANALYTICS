@@ -1,1 +1,193 @@
+# 📊 Executive Dashboard — Superstore Retail Sales Performance
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-GridSpec-orange?logo=python&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-Visualization-teal)
+![Pandas](https://img.shields.io/badge/Pandas-2.0+-darkblue?logo=pandas&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-SQLite-lightblue?logo=sqlite&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completado-brightgreen)
+
+---
+
+## 📋 Descripción del Proyecto
+
+Dashboard ejecutivo de rendimiento comercial construido en Python para una cadena retail con operaciones en 4 regiones de EE.UU. El Director Comercial necesitaba un reporte visual completo, narrativo y accionable para presentar en reunión de directorio — sin abrir una sola query.
+
+El proyecto combina **visualización ejecutiva con GridSpec**, **análisis de crecimiento interanual (YoY)**, **segmentación región × categoría** y un **Briefing Ejecutivo** listo para enviar a dirección.
+
+> *"El dashboard no es el producto final. El producto final es la decisión que toma el Director el lunes a las 9am."*
+
+---
+
+## 🎯 Objetivos
+
+- Construir un **dashboard de 4 paneles** con `matplotlib.gridspec` en una sola figura exportable
+- Calcular y comunicar **KPIs ejecutivos** del negocio (Revenue, Profit, Margen, Ticket Promedio)
+- Analizar **crecimiento interanual YoY** por trimestre para detectar tendencias y anomalías
+- Identificar disparidades de rentabilidad por **región × categoría**
+- Entregar un **Briefing Ejecutivo** accionable orientado a decisiones de negocio
+
+---
+
+## 📦 Dataset
+
+**Superstore Sales Dataset — Kaggle**
+- Fuente: [Kaggle — vivek468](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final)
+- Registros: 9.994 órdenes
+- Período: Enero 2014 — Diciembre 2017
+- Regiones: Central, East, South, West
+
+| Variable | Descripción |
+|---|---|
+| `Sales` | Revenue por orden |
+| `Profit` | Ganancia neta por orden |
+| `Category` / `Sub-Category` | Clasificación del producto |
+| `Region` | Región geográfica de la venta |
+| `Order Date` | Fecha de la orden — base para análisis temporal |
+| `Customer ID` | Identificador único de cliente |
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+| Herramienta | Uso |
+|---|---|
+| **Python 3.10+** | Análisis, visualización y reporting |
+| **Pandas** | Transformación, agregación y análisis temporal |
+| **Matplotlib + GridSpec** | Dashboard multipanel y exportación |
+| **Seaborn** | Visualización de estacionalidad y tendencias |
+| **NumPy** | Operaciones numéricas auxiliares |
+| **Google Colab** | Entorno de desarrollo |
+
+---
+
+## 🔍 Metodología
+
+### 1. KPIs Ejecutivos Globales
+
+```python
+revenue_total = df['Sales'].sum()          # $2.297.200
+profit_total  = df['Profit'].sum()         # $286.397
+margen_global = profit_total / revenue_total * 100   # 12.47%
+ticket_promedio = revenue_total / df['Order ID'].nunique()
+```
+
+### 2. Dashboard de 4 Paneles con GridSpec
+
+```python
+fig = plt.figure(figsize=(18, 12))
+gs  = gridspec.GridSpec(2, 2, figure=fig, hspace=0.4, wspace=0.35)
+
+# Panel 1 — Revenue vs Profit por Categoría   (gs[0,0])
+# Panel 2 — Tendencia de Ventas Mensual        (gs[0,1])
+# Panel 3 — Margen % Top 10 Sub-Categorías    (gs[1,0])
+# Panel 4 — Distribución Revenue por Región   (gs[1,1])
+
+plt.savefig('executive_dashboard.png', dpi=150, bbox_inches='tight')
+```
+
+### 3. Análisis YoY Trimestral
+
+Crecimiento interanual calculado con `pct_change(periods=4)` — compara cada trimestre contra el mismo trimestre del año anterior, eliminando el efecto de estacionalidad del cálculo.
+
+```python
+resumen_trimestre['Revenue_YoY_%'] = resumen_trimestre['Revenue'].pct_change(periods=4) * 100
+resumen_trimestre['Profit_YoY_%']  = resumen_trimestre['Profit'].pct_change(periods=4)  * 100
+```
+
+### 4. Segmentación Región × Categoría
+
+Tabla cruzada con gradiente de color `RdYlGn` para identificar visualmente las combinaciones de menor rentabilidad — especialmente Furniture en Región Central.
+
+---
+
+## 📊 Hallazgos Principales
+
+| Hallazgo | Detalle |
+|---|---|
+| **Revenue total** | $2.297.200 — crecimiento sostenido 2014–2017 |
+| **Margen global** | 12.47% — $12.47 retenidos por cada $100 vendidos |
+| **Categoría más rentable** | Office Supplies — 17.03% de margen |
+| **Sub-categoría con pérdida** | Tables → margen negativo, pérdida real por venta |
+| **Combinación crítica** | Furniture + Región Central → **-1.75%** de margen |
+| **Región con mejor margen** | West — liderazgo en Revenue y Profit |
+| **Región con peor ticket** | Central — bajo ticket promedio y margen mínimo |
+| **Anomalía YoY detectada** | 2017Q4: Revenue creció pero Profit YoY cayó **-28.03%** |
+| **Estacionalidad** | Q4 concentra los picos; Q1 es consistentemente el más bajo |
+
+---
+
+## 💡 Briefing Ejecutivo — Resumen para Dirección
+
+### Situación actual
+Crecimiento sostenido en Revenue y Profit entre 2014 y 2017 con margen global del 12.47%. Sin embargo, el desempeño general oculta disparidades significativas en rentabilidad por región y categoría que requieren acción inmediata.
+
+### Hallazgos críticos
+1. **Furniture destruye margen** — especialmente en Región Central (-1.75%). Cada venta en esa combinación genera pérdida neta.
+2. **Dependencia excesiva del Q4** — el negocio está sobreexpuesto a la estacionalidad de fin de año. Una caída en Q4 compromete el resultado anual completo.
+3. **2017Q4: señal de alarma** — Revenue creció pero Profit YoY cayó -28.03%. Probable causa: descuentos agresivos o mix desfavorable en temporada alta.
+
+### Recomendación inmediata
+Auditar precios y descuentos en subcategorías **Tables** y **Bookcases** en Región Central.
+**Objetivo:** llevar el margen de Furniture Central de -1.75% a breakeven en Q2 2025.
+
+---
+
+## 📁 Estructura del Repositorio
+
+```
+ExecutiveDashboard/
+│
+├── DashboardEjecutivo_SuperStoreRetail.ipynb  # Notebook principal
+├── executive_dashboard.png                    # Dashboard exportado (4 paneles)
+├── README.md                                  # Este archivo
+└── assets/                                    # Visualizaciones adicionales
+```
+
+---
+
+## ▶️ Cómo reproducir el análisis
+
+1. Clonar el repositorio:
+```bash
+git clone https://github.com/RGRIVEROS-PORTFOLIO/PORTFOLIO_ANALYTICS.git
+cd ExecutiveDashboard
+```
+
+2. Instalar dependencias:
+```bash
+pip install pandas numpy matplotlib seaborn kagglehub
+```
+
+3. Ejecutar el notebook con `Restart & Run All`.
+El dataset se descarga automáticamente via API de Kaggle en la primera celda.
+
+4. El dashboard se exporta automáticamente como `executive_dashboard.png` en la celda 25.
+
+---
+
+## 👤 Autor
+
+**Rodolfo Gabriel Riveros Lobos**
+Data Analyst Junior | Background en Calidad ISO 9001 & Customer Experience
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-blue?logo=linkedin)](https://www.linkedin.com/in/tu-perfil)
+[![GitHub](https://img.shields.io/badge/GitHub-Portfolio-black?logo=github)](https://github.com/RGRIVEROS-PORTFOLIO/PORTFOLIO_ANALYTICS)
+
+---
+
+## 📂 Otros proyectos del portfolio
+
+| Proyecto | Descripción | Stack |
+|---|---|---|
+| [Restaurant Reviews](../RestaurantReviews) | NLP básico y análisis de satisfacción | Python, WordCloud |
+| [Superstore Retail EDA](../retail-sales-analysis) | RFM, ABC, Pareto y Executive Summary | Python, Pandas |
+| [Olist E-Commerce](../OlistEcommerce) | SQL + Python + mapa coroplético | SQL, GeoPandas |
+| [HR Nómina Analytics](../HRNomina) | Auditoría salarial, Z-Score, Window Functions | SQL, NumPy |
+| [Credit Risk Analytics](../RiskAnalysis) | Morosidad, segmentación de riesgo, ISO 31000 | SQL, Python |
+| **Executive Dashboard** | Reporting ejecutivo, YoY, GridSpec | Python, Matplotlib |
+
+---
+
+*Proyecto desarrollado como parte del proceso de formación en Data Analytics aplicado a escenarios reales de negocio retail.*
 
